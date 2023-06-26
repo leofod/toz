@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package proto_init;
+
+option go_package = "./";
+
+service Url {
+    rpc GetFullURL(GetFullURLRequest) returns (GetFullURLResponse) {}
+    rpc CreateShotrUrl(CreateShotrUrlRequest) returns (CreateShotrUrlResponse) {}
+}
+
+message GetFullURLRequest {
+    string short_url = 1; 
+}
+
+message GetFullURLResponse {
+    string full_url = 1; 
+}
+
+message CreateShotrUrlRequest {
+    string full_url = 1; 
+}
+
+message CreateShotrUrlResponse {
+    string short_url = 1; 
+}
+
