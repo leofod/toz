@@ -25,11 +25,11 @@ services:
       - go_app
 
 
-  url_service:
-    container_name: go_url_service_container
+  url_service_db:
+    container_name: go_url_service_db_container
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: DBDockerfile
     ports:
       - "8000:8000"
     depends_on:
@@ -37,6 +37,20 @@ services:
         condition: service_healthy
     networks:
       - go_app
+      
+  url_service_inm:
+    container_name: go_url_service__inmcontainer
+    build:
+      context: .
+      dockerfile: INMDockerfile
+    ports:
+      - "8001:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - go_app
+      
 
 networks:
   go_app:

@@ -1,0 +1,9 @@
+FROM golang:alpine AS builder
+WORKDIR /app
+ADD . /app
+
+RUN go mod download
+
+EXPOSE 8000
+
+CMD ["go", "run", "./cmd/main.go"]
